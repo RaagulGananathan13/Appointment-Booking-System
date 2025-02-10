@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Users from "./pages/Users";
 import AddUsers from "./pages/AddUsers";
 import UpdateUsers from "./pages/UpdateUsers";
+import "./style.css"
 
 function App() {
   return (

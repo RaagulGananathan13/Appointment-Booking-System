@@ -30,6 +30,9 @@ const Users = () => {
                 { user.profilepicture && <img src={user.profilepicture} alt="" />}
                 <h2>{user.username}</h2>
                 <h3>{user.phone}</h3>
+                <h3>{user.email}</h3>
+                <button className="delete">Delete</button>
+                <button className="update">Update</button>
             </div>    
         ))}
       </div>

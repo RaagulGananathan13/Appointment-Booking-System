@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
 
 const AddUsers = () => {
     const [user, setUser] = useState({
@@ -9,6 +10,7 @@ const AddUsers = () => {
         profilepicture:"",
     });
 
+    const navigate = useNavigate()
     const handleChange = (e) =>{
         setUser(Prev=>({...Prev, [e.target.name]: e.target.value}));
     };
@@ -17,8 +19,9 @@ const AddUsers = () => {
         e.preventDefault()
         try{
             await axios.post("http://localhost:8800/users", user);
+            navigate("/")
         }catch(err){
-
+            console.log(err)
         }
         
     }
@@ -32,7 +35,7 @@ const AddUsers = () => {
       <input type="tel" placeholder='phone' onChange={handleChange} name="phone"/>
       <input type="text" placeholder='profilepicture' onChange={handleChange} name="profilepicture"/>
 
-      <button onClick = {handleClick} ></button>
+      <button onClick = {handleClick} >Add</button>
     </div>
   )
 }
