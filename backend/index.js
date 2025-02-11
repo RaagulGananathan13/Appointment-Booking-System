@@ -53,10 +53,29 @@ app.get("/", (req, res) => {
       
         db.query(q, [userId], (err, data) => {
           if (err) return res.send(err);
-          return res.json(data);
+          return res.json("User has ben successfully Deleted !");
         });
       });
 
+
+      app.put("/users/:id", (req, res) => {
+        const userId = req.params.id;
+        const q = "UPDATE users SET `username` = ?, `email` = ?, `phone` = ?, `profilepicture` = ? WHERE id = ? ";
+
+        const values = [
+            req.body.username,
+            req.body.phone,
+            req.body.profilepicture,
+            req.body.email,
+          ];
+    
+      
+        db.query(q, [...values, userId], (err, data) => {
+          if (err) return res.send(err);
+          return res.json("User has ben successfully Updated !");
+        });
+      });
+      
 
 
 app.listen(8800, () =>{

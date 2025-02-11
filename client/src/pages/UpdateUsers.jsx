@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const UpdateUsers = () => {
     const [user, setUser] = useState({
@@ -11,6 +11,10 @@ const UpdateUsers = () => {
     });
 
     const navigate = useNavigate()
+    const location = useLocation()
+
+    const userId = location.pathname.split("/")[2]
+
     const handleChange = (e) =>{
         setUser(Prev=>({...Prev, [e.target.name]: e.target.value}));
     };
@@ -18,7 +22,7 @@ const UpdateUsers = () => {
     const handleClick = async e =>{
         e.preventDefault()
         try{
-            await axios.post("http://localhost:8800/users", user);
+            await axios.put("http://localhost:8800/users/" + userId, user);
             navigate("/")
         }catch(err){
             console.log(err)
