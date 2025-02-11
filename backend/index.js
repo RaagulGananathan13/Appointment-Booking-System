@@ -32,12 +32,13 @@ app.get("/", (req, res) => {
   });
 
   app.post("/users", (req, res) => {
-    const q = "INSERT INTO users(`username`, `phone`, `profilepicture`) VALUES (?)";
+    const q = "INSERT INTO users(`username`, `phone`, `profilepicture`, `email`) VALUES (?)";
   
     const values = [
         req.body.username,
         req.body.phone,
         req.body.profilepicture,
+        req.body.email,
       ];
 
     db.query(q, [values], (err, data) => {
@@ -45,6 +46,18 @@ app.get("/", (req, res) => {
         return res.json(data);
       });
     });
+
+    app.delete("/users/:id", (req, res) => {
+        const userId = req.params.id;
+        const q = " DELETE FROM users WHERE id = ? ";
+      
+        db.query(q, [userId], (err, data) => {
+          if (err) return res.send(err);
+          return res.json(data);
+        });
+      });
+
+
 
 app.listen(8800, () =>{
     console.log("Connectd to Backend!")

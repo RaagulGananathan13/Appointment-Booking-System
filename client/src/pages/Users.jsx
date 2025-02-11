@@ -21,6 +21,16 @@ const Users = () => {
     }, [])
 
 
+    const handleDelete = async (id) => {
+        try {
+          await axios.delete(`http://localhost:8800/users/${id}`);
+          window.location.reload()
+        } catch (err) {
+          console.log(err);
+        }
+      };
+
+
   return (
     <div>
       <h1>All Users</h1>
@@ -31,7 +41,7 @@ const Users = () => {
                 <h2>{user.username}</h2>
                 <h3>{user.phone}</h3>
                 <h3>{user.email}</h3>
-                <button className="delete">Delete</button>
+                <button className="delete" onClick={()=>handleDelete(user.id)}>Delete</button>
                 <button className="update">Update</button>
             </div>    
         ))}
