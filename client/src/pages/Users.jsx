@@ -42,7 +42,7 @@ const Users = () => {
                 <h3>{user.phone}</h3>
                 <h3>{user.email}</h3>
                 <button className="delete" onClick={()=>handleDelete(user.id)}>Delete</button>
-                <button className="update">Update</button>
+                <button className="update"> <Link to={`/update/${user.id}`}>Update</Link></button>
             </div>    
         ))}
       </div>

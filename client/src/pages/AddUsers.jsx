@@ -35,7 +35,7 @@ const AddUsers = () => {
       <input type="tel" placeholder='phone' onChange={handleChange} name="phone"/>
       <input type="text" placeholder='profilepicture' onChange={handleChange} name="profilepicture"/>
 
-      <button onClick = {handleClick} >Add</button>
+      <button className="formButton" onClick = {handleClick} >Add</button>
     </div>
   )
 }
